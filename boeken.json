@@ -15,6 +15,21 @@
         "prijs": 69.50
      },
      {
+        "titel": "Koffie, kaffer & katoen",
+        "cover": "https://media.s-bol.com/7jzRgZw5k6B/550x826.jpg",
+        "auteurs":[ 
+            {
+            "voornaam":"Marlies",
+            "achternaam":"Philippa"
+            }
+        ],
+        "uitgave": "2008",
+        "paginas": 155,
+        "taal": "Nederlands",
+        "ean": 9789054601623,
+        "prijs":15.99
+     },
+     {
         "titel": "Antwerpen",
         "cover": "https://media.s-bol.com/7lyMwq1Oo8y/550x825.jpg",
         "voortitel" : "Time to momo -",
