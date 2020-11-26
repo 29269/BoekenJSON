@@ -2,12 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="JOSNboekenDuneya ">
+    <meta name="keywords" content="HTML,CSS,PHP">
+    <meta name="author" content="Duneya Saleh">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="og:title" property="og:title" content="JOSNboekenDuneya">
+    <link rel="stylesheet" href="css/boeken.css">
     <title>Boeken</title>
 </head>
 <body>
+<div class="winkelwangen">
+    <img src="https://image.freepik.com/iconen-gratis/winkelwagen-1_318-10653.jpg" alt="winkelwagen" class="winkelwagen__icon">
+    <span class="winkelwagen__aantal">0</span>
+</div>
     <h1>Kies uit de volgende boeken </h1>
-    <div class="boeken"></div>
+    <div class="besturing">
+        <label class="besturing__cb-label">
+           <input type="checkbox" class="besturing__cb-taal" value="Nederlands" checked>
+            Nederlads
+        </label>
+        <label class="besturing__cb-label">
+            <input type="checkbox" class="besturing__cb-taal" value="Engels" checked>
+            Engels
+        </label>
+        <label class="besturing__cb-label">
+            <input type="checkbox" class="besturing__cb-taal" value="Duits" checked>
+            Duits
+        </label>
+
+<!--        kunnen dingen sorteren -->
+        <span class="besturing__ssorteren">
+            <label class="besturing__select--label">
+                Sorteren op:
+                <select class="besturing__select">
+                    <option value="titel">Titel</option>
+                    <option value="auteur">Auteur</option>
+                    <option value="uitgave">Publicatie datum</option>
+                    <option value="paginas">Antaal bladzijden </option>
+                </select>
+            </label>
+            <label><input type="radio" name="opaf" class="besturing__rb" checked value="1">Oplopend</label>
+            <label><input type="radio" name="opaf" class="besturing__rb" checked value="-1">Aflopend</label>
+        </span>
+    </div>
+    <div id="boeken"></div>
     <script src="js/boeken.js"></script>
 </body>
 </html>
