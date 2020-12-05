@@ -18,13 +18,49 @@ xhhtp.open('GET', 'boeken.json', true);
 xhhtp.send();
 ///object winkelwagen
 ///met eigenschappen: bestelling(boeken )
-/// en methods:
+/// en methods: data ophalen , boeken toevoegen ,uitvoeren
 const winkelwagen ={
-    bestelling:[]
+    bestelling:[],
+    // data opslaan o de localStorage
+    boekToevoegen(obj){
+        winkelwagen.bestelling.push(obj);
+        aantalbestlling.innerHTML = this.bestelling.length;
+        localStorage.wwBestelling = JSON.stringify(this.bestelling);
+    },
+    uitvoeren(){
+
+        let html = '<table>';
+        let totaal = 0;
+        this.bestelling.forEach( boek => {
+            let compeltTitel = "";
+            if ( boek.voortitel){
+                compeltTitel += boek.voortitel + " ";
+            }
+            compeltTitel += boek.titel;
+            html += '<tr>';
+            html += `<td><img src="${boek.cover}" alt="${compeltTitel}" class="bestellingFormulier__cover"><td>`;
+            html +=`<td>${compeltTitel}</td>`;
+            html +=`<td>${boek.prijs.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'})}</td>`;
+            html += '<tr>';
+            totaal += boek.prijs;
+        });
+        html += `<tr><td colspan="3">Totaal</td>
+          <td>${totaal.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'})}</td></tr>`;
+        html += '</table>';
+        document.getElementById('uitvoer').innerHTML = html;
+        aantalbestlling.innerHTML = winkelwagen.bestelling.length;
+    },
+
+
+    dataOphalen(){
+        if (localStorage.wwBestelling){
+                this.bestelling=JSON.parse(localStorage.wwBestelling);
+            this.uitvoeren();
+
+    }}
 };
-// de localStorage werkt niet 
-// winkelwagen.bestelling=JSON.parse(localStorage.wwBestelling);
-// aantalbestlling.innerHTML = winkelwagen.bestelling.length;
+winkelwagen.dataOphalen();
+// de localStorage werkt niet
 
 ///object boeken
 ///met eigenschappen: taalFilter, data, eigenschapsorteren
@@ -109,9 +145,9 @@ const boeken ={
                 e.preventDefault();
                 let boekID = e.target.getAttribute('data-role');
                 let gekliktBoek = this.data.filter(b => b.ean == boekID);
-                winkelwagen.bestelling.push(gekliktBoek[0]);
-                aantalbestlling.innerHTML = winkelwagen.bestelling.length;
-                localStorage.wwBestelling = JSON.stringify(winkelwagen.bestelling);
+                winkelwagen.boekToevoegen(gekliktBoek[0]);
+
+
             })
             );
     },
